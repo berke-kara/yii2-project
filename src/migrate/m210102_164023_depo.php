@@ -3,21 +3,19 @@
 use yii\db\Migration;
 use yii\db\Schema;
 /**
- * Class m210102_142735_urun
+ * Class m210102_164023_depo
  */
-class m210102_142735_urun extends Migration
+class m210102_164023_depo extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        return $this->createTable('urun2', [
+        return $this->createTable('depo',[
             'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING,
-            'body' => Schema::TYPE_TEXT,
-            'created_at' => Schema::TYPE_DATETIME,
-            'updated_at' => Schema::TYPE_DATETIME,
+            'isim' => Schema::TYPE_STRING,
+            'depo_sorumlusu_id' => Schema::TYPE_INTEGER,
         ]);
     }
 
@@ -26,11 +24,10 @@ class m210102_142735_urun extends Migration
      */
     public function safeDown()
     {
+        echo "m210102_164023_depo cannot be reverted.\n";
 
-
-        return $this->dropTable('urun2');
+        return false;
     }
-
 
     /*
     // Use up()/down() to run migration code without a transaction.
@@ -41,7 +38,7 @@ class m210102_142735_urun extends Migration
 
     public function down()
     {
-        echo "m210102_142735_urun cannot be reverted.\n";
+        echo "m210102_164023_depo cannot be reverted.\n";
 
         return false;
     }
