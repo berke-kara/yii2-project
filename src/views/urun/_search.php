@@ -2,28 +2,24 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\UrunSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="urun-search">
+    <?php echo"berke" ?>
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+    <?= $form->field($model,'id')->dropDownList(
 
-    <?= $form->field($model, 'id') ?>
+        ArrayHelper::map($data,'id','isim')
 
-    <?= $form->field($model, 'isim') ?>
-
-    <?= $form->field($model, 'fiyat') ?>
-
-    <?= $form->field($model, 'stok_adedi') ?>
-
-    <?= $form->field($model, 'bulunduğu_depo_id') ?>
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
@@ -31,5 +27,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+  
 </div>

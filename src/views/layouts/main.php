@@ -37,6 +37,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
+        ['label' => 'Sepet', 'url' => ['/project/default']],
         ['label' => 'Depo', 'url' => ['/project/depo']],
         ['label' => 'Urun', 'url' => ['/project/urun']],
         ['label' => 'Calisan', 'url' => ['/project/calisan']],

@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use berkekaraa\project\widgets\deneme;
+/*Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) */
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\Depo */
 
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -26,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -34,5 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'depo_sorumlusu_id',
         ],
     ]) ?>
+
+    <?= deneme::widget([
+    'model' => $model,
+        'baslik' => [
+            'id',
+            'isim',
+            'depo_sorumlusu_id',
+        ],
+    ])?>
+
 
 </div>

@@ -45,28 +45,32 @@ class UrunSearch extends Urun
 
         // add conditions that should always apply here
 
-        $dataProvider = new ActiveDataProvider([
+       /* $dataProvider = new ActiveDataProvider([
             'query' => $query,
-        ]);
+        ]);*/
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
+            return $query;
         }
-
+        print_r($query->count());
         // grid filtering conditions
+        print_r("berkeeee");
+        print_r($this->id);
         $query->andFilterWhere([
             'id' => $this->id,
             'fiyat' => $this->fiyat,
             'stok_adedi' => $this->stok_adedi,
         ]);
-
+        print_r("adasdadasdasdd");
+        print_r($query->count());
+      
         $query->andFilterWhere(['like', 'isim', $this->isim])
             ->andFilterWhere(['like', 'bulunduğu_depo_id', $this->bulunduğu_depo_id]);
 
-        return $dataProvider;
+        return $query;
     }
 }

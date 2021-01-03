@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\Depo */
 
-$this->title = 'Create Depo';
-$this->params['breadcrumbs'][] = ['label' => 'Depos', 'url' => ['index']];
+$this->title = 'Depo oluştur';
+$this->params['breadcrumbs'][] = ['label' => 'Depo', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="depo-create">

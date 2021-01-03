@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ListView;
-
+use berkekaraa\project\widgets\cardview;
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\Urun */
 
-$this->title = $model->id;
+$this->title = $model->isim;
 $this->params['breadcrumbs'][] = ['label' => 'Uruns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -37,5 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'bulunduğu_depo_id',
         ],
     ]) ?>
+   
 
 </div>

@@ -4,10 +4,12 @@ namespace berkekaraa\project\controllers;
 
 use Yii;
 use berkekaraa\project\models\Urun;
+use berkekaraa\project\models\Depo;
 use berkekaraa\project\models\UrunSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 /**
  * UrunController implements the CRUD actions for Urun model.
@@ -35,13 +37,61 @@ class UrunController extends Controller
      */
     public function actionIndex()
     {
+
+      /*  $searchModel = new UrunSearch();
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+         return $this->render('index', [
+             'searchModel' => $searchModel,
+             'dataProvider' => $dataProvider,
+         ]);
+
+         
         $searchModel = new UrunSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);*/
+
+
+
+
+
+        $searchModel = new UrunSearch();
+        print_r($searchModel);
+    
+        $q = $searchModel->search(Yii::$app->request->queryParams);
+       // print_r($q);
+
+        $count = $q->count();
+      // print_r($count);
+
+        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>5]); //her iki sayfa da bir linkpager sayesinde diğer sayfaya geçiyoruz
+
+
+        $model = $q->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+         $data = Depo::find()->all();
+
+
+
+        return $this->render('index', [
+            'data' =>$data,
+            'searchModel' => $searchModel,
+            'model' => $model,
+            'pagination' => $pagination,
         ]);
+
+
+
+
+
+
+        
     }
 
     /**
