@@ -2,19 +2,17 @@
 
 namespace berkekaraa\project\controllers;
 
-use berkekaraa\project\models\UrunSearch;
 use Yii;
-use berkekaraa\project\models\Depo;
-use berkekaraa\project\models\DepoSearch;
-use yii\data\Pagination;
+use berkekaraa\project\models\Calisan;
+use berkekaraa\project\models\CalisanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DepoController implements the CRUD actions for Depo model.
+ * CalisanController implements the CRUD actions for Calisan model.
  */
-class DepoController extends Controller
+class CalisanController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,42 +30,22 @@ class DepoController extends Controller
     }
 
     /**
-     * Lists all Depo models.
+     * Lists all Calisan models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DepoSearch();
+        $searchModel = new CalisanSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $q = $searchModel->search(Yii::$app->request->queryParams);
-        $count = $q->count();
-
-        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>5]); //her iki sayfa da bir linkpager sayesinde diğer sayfaya geçiyoruz
-
-        $model = $q->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
-
-        $data = Depo::find()->all();
-    
         return $this->render('index', [
-            'data' =>$data,
             'searchModel' => $searchModel,
-            'model' => $model,
-            'pagination' => $pagination,
+            'dataProvider' => $dataProvider,
         ]);
-
-
-        /* $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
- 
-         return $this->render('index', [
-             'searchModel' => $searchModel,
-             'dataProvider' => $dataProvider,
-         ]);*/
     }
 
     /**
-     * Displays a single Depo model.
+     * Displays a single Calisan model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -80,13 +58,13 @@ class DepoController extends Controller
     }
 
     /**
-     * Creates a new Depo model.
+     * Creates a new Calisan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Depo();
+        $model = new Calisan();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -98,7 +76,7 @@ class DepoController extends Controller
     }
 
     /**
-     * Updates an existing Depo model.
+     * Updates an existing Calisan model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -118,7 +96,7 @@ class DepoController extends Controller
     }
 
     /**
-     * Deletes an existing Depo model.
+     * Deletes an existing Calisan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -132,15 +110,15 @@ class DepoController extends Controller
     }
 
     /**
-     * Finds the Depo model based on its primary key value.
+     * Finds the Calisan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Depo the loaded model
+     * @return Calisan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Depo::findOne($id)) !== null) {
+        if (($model = Calisan::findOne($id)) !== null) {
             return $model;
         }
 

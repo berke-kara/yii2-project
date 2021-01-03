@@ -1,7 +1,6 @@
 <?php
 
-
-namespace berkekaraa\models;
+namespace berkekaraa\project\models;
 
 use Yii;
 
@@ -9,12 +8,12 @@ use Yii;
  * This is the model class for table "urun".
  *
  * @property int $id
- * @property string $isim
- * @property int $fiyat
- * @property int $kategori_id
- * @property string $resim
+ * @property string|null $isim
+ * @property float|null $fiyat
+ * @property int|null $stok_adedi
+ * @property string|null $bulunduğu_depo_id
  *
- * @property UrunKategori $kategori
+ * @property Depo $id0
  */
 class Urun extends \yii\db\ActiveRecord
 {
@@ -32,11 +31,10 @@ class Urun extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['isim', 'fiyat', 'kategori_id', 'resim'], 'required'],
-            [['fiyat', 'kategori_id'], 'integer'],
-            [['isim'], 'string', 'max' => 32],
-            [['resim'], 'string', 'max' => 255],
-            [['kategori_id'], 'exist', 'skipOnError' => true, 'targetClass' => UrunKategori::className(), 'targetAttribute' => ['kategori_id' => 'id']],
+            [['fiyat'], 'number'],
+            [['stok_adedi'], 'integer'],
+            [['isim', 'bulunduğu_depo_id'], 'string', 'max' => 255],
+            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Depo::className(), 'targetAttribute' => ['id' => 'id']],
         ];
     }
 
@@ -49,18 +47,18 @@ class Urun extends \yii\db\ActiveRecord
             'id' => 'ID',
             'isim' => 'Isim',
             'fiyat' => 'Fiyat',
-            'kategori_id' => 'Kategori ID',
-            'resim' => 'Resim',
+            'stok_adedi' => 'Stok Adedi',
+            'bulunduğu_depo_id' => 'Bulunduğu Depo ID',
         ];
     }
 
     /**
-     * Gets query for [[Kategori]].
+     * Gets query for [[Id0]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getKategori()
+    public function getId0()
     {
-        return $this->hasOne(UrunKategori::className(), ['id' => 'kategori_id']);
+        return $this->hasOne(Depo::className(), ['id' => 'id']);
     }
 }

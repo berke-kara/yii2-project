@@ -5,11 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\Urun */
 
-$this->title = 'Create Urun';
+$this->title = 'Update Urun: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Uruns', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="urun-create">
+<div class="urun-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
