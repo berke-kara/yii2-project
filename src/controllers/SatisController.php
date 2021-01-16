@@ -3,16 +3,16 @@
 namespace berkekaraa\project\controllers;
 
 use Yii;
-use berkekaraa\project\models\Calisan;
-use berkekaraa\project\models\CalisanSearch;
+use berkekaraa\project\models\Satis;
+use berkekaraa\project\models\SatisSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use berkekaraa\project\models\Urun;
 /**
- * CalisanController implements the CRUD actions for Calisan model.
+ * SatisController implements the CRUD actions for Satis model.
  */
-class CalisanController extends Controller
+class SatisController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class CalisanController extends Controller
     }
 
     /**
-     * Lists all Calisan models.
+     * Lists all Satis models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CalisanSearch();
+        $searchModel = new SatisSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class CalisanController extends Controller
     }
 
     /**
-     * Displays a single Calisan model.
+     * Displays a single Satis model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,25 +58,40 @@ class CalisanController extends Controller
     }
 
     /**
-     * Creates a new Calisan model.
+     * Creates a new Satis model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($stok)
     {
-        $model = new Calisan();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = new Satis();
+        $model->urun_id=$stok;
+        if(Yii::$app->request->post())
+        {
+            $model->load(Yii::$app->request->post());
+            if($model->stok_adedi<=Urun::findOne($stok)->stok_adedi)
+            {
+                if ($model->save()) {
+
+                    $temp=Urun::findOne($stok);
+                    $temp->stok_adedi=$temp->stok_adedi-$model->stok_adedi;
+                    $temp->save();
+                    return $this->redirect(['view', 'id' => $model->kullanici_tc,'model'=>$model]);
+                }
+            }
         }
+
 
         return $this->render('create', [
             'model' => $model,
+            'stok' => $stok,
         ]);
+
     }
 
     /**
-     * Updates an existing Calisan model.
+     * Updates an existing Satis model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,16 +102,17 @@ class CalisanController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->kullanici_tc,'stok'=>$model->stok_adedi]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'id' => $id,
         ]);
     }
 
     /**
-     * Deletes an existing Calisan model.
+     * Deletes an existing Satis model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +126,15 @@ class CalisanController extends Controller
     }
 
     /**
-     * Finds the Calisan model based on its primary key value.
+     * Finds the Satis model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Calisan the loaded model
+     * @return Satis the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Calisan::findOne($id)) !== null) {
+        if (($model = Satis::findOne($id)) !== null) {
             return $model;
         }
 

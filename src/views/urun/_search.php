@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <div class="urun-search">
-    <?php echo"berke" ?>
+
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -22,10 +22,10 @@ use yii\helpers\ArrayHelper;
     ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Filtrele', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tum urunleri gor',['index'],['class'=>'btn btn-info'])?>
     </div>
 
     <?php ActiveForm::end(); ?>
-  
+
 </div>

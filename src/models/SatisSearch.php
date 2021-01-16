@@ -4,12 +4,12 @@ namespace berkekaraa\project\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use berkekaraa\project\models\Calisan;
+use berkekaraa\project\models\Satis;
 
 /**
- * CalisanSearch represents the model behind the search form of `berkekaraa\project\models\Calisan`.
+ * SatisSearch represents the model behind the search form of `berkekaraa\project\models\Satis`.
  */
-class CalisanSearch extends Calisan
+class SatisSearch extends Satis
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class CalisanSearch extends Calisan
     public function rules()
     {
         return [
-            [['id', 'Yas'], 'integer'],
-            [['isim', 'bolum'], 'safe'],
-            [['Maas'], 'number'],
+            [['kullanici_tc', 'urun_id', 'stok_adedi'], 'integer'],
+            [['market_isim', 'adres'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class CalisanSearch extends Calisan
      */
     public function search($params)
     {
-        $query = Calisan::find();
+        $query = Satis::find();
 
         // add conditions that should always apply here
 
@@ -59,13 +58,13 @@ class CalisanSearch extends Calisan
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'Maas' => $this->Maas,
-            'Yas' => $this->Yas,
+            'kullanici_tc' => $this->kullanici_tc,
+            'urun_id' => $this->urun_id,
+            'stok_adedi' => $this->stok_adedi,
         ]);
 
-        $query->andFilterWhere(['like', 'isim', $this->isim])
-            ->andFilterWhere(['like', 'bolum', $this->bolum]);
+        $query->andFilterWhere(['like', 'market_isim', $this->market_isim])
+            ->andFilterWhere(['like', 'adres', $this->adres]);
 
         return $dataProvider;
     }

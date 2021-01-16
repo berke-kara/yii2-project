@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel berkekaraa\project\models\CalisanSearch */
+/* @var $searchModel berkekaraa\project\models\SatisSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Calisans';
+$this->title = 'Satis';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="calisan-index">
+<div class="satis-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Calisan', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Satis', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'isim',
-            'bolum',
-            'Maas',
-            'Yas',
+            'kullanici_tc',
+            'urun_id',
+            'stok_adedi',
+            'market_isim',
+            'adres:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

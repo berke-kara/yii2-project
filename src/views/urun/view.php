@@ -6,7 +6,6 @@ use yii\widgets\ListView;
 use berkekaraa\project\widgets\cardview;
 /* @var $this yii\web\View */
 /* @var $model berkekaraa\project\models\Urun */
-
 $this->title = $model->isim;
 $this->params['breadcrumbs'][] = ['label' => 'Uruns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -15,16 +14,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="urun-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Verileri Güncelle', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Verileri Sil', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Urunu depodan silmek istediğinize emin misin ?',
                 'method' => 'post',
             ],
         ]) ?>
+
     </p>
 
     <?= DetailView::widget([
@@ -37,6 +36,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'bulunduğu_depo_id',
         ],
     ]) ?>
-   
 
 </div>

@@ -17,7 +17,7 @@ class DepoSearch extends Depo
     public function rules()
     {
         return [
-            [['id', 'depo_sorumlusu_id'], 'integer'],
+            [['id'], 'integer'],
             [['isim'], 'safe'],
         ];
     }
@@ -44,26 +44,25 @@ class DepoSearch extends Depo
 
         // add conditions that should always apply here
 
-     /*   $dataProvider = new ActiveDataProvider([
+        $dataProvider = new ActiveDataProvider([
             'query' => $query,
-        ]);*/
+        ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $query;
+            return $dataProvider;
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'depo_sorumlusu_id' => $this->depo_sorumlusu_id,
         ]);
 
         $query->andFilterWhere(['like', 'isim', $this->isim]);
 
-        return $query;
+        return $dataProvider;
     }
 }
