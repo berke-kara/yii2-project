@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php }  ?>
     <div style="margin-top: 400px"">
     <?= LinkPager::widget([
-        'pagination' =>$pagination,   //sayfa geçişi sağladı bize
+        'pagination' =>$pagination,
     ]) ?>
 </div>
 

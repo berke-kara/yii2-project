@@ -38,38 +38,15 @@ class UrunController extends Controller
     public function actionIndex()
     {
 
-        /*  $searchModel = new UrunSearch();
-           $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-           return $this->render('index', [
-               'searchModel' => $searchModel,
-               'dataProvider' => $dataProvider,
-           ]);
-
-
-          $searchModel = new UrunSearch();
-          $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-          return $this->render('index', [
-              'searchModel' => $searchModel,
-              'dataProvider' => $dataProvider,
-          ]);*/
-
-
-
-
-
         $searchModel = new UrunSearch();
 
 
         $q = $searchModel->search(Yii::$app->request->queryParams);
-        // print_r($q);
+
 
         $count = $q->count();
-        // print_r($count);
 
-        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>12]); //her iki sayfa da bir linkpager sayesinde diğer sayfaya geçiyoruz
-
+        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>12]);
 
         $model = $q->offset($pagination->offset)
             ->limit($pagination->limit)
