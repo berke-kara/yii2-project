@@ -8,10 +8,7 @@ use Yii;
  * This is the model class for table "depo".
  *
  * @property int $id
- * @property string|null $isim
- * @property int|null $depo_sorumlusu_id
- *
- * @property Urun $urun
+ * @property string $isim
  */
 class Depo extends \yii\db\ActiveRecord
 {
@@ -29,10 +26,8 @@ class Depo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'depo_sorumlusu_id'], 'integer'],
-            [['isim'], 'string', 'max' => 255],
-            [['id'], 'unique'],
+            [['isim'], 'required'],
+            [['isim'], 'string', 'max' => 32],
         ];
     }
 
@@ -44,17 +39,6 @@ class Depo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'isim' => 'Isim',
-            'depo_sorumlusu_id' => 'Depo Sorumlusu ID',
         ];
-    }
-
-    /**
-     * Gets query for [[Urun]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUrun()
-    {
-        return $this->hasOne(Urun::className(), ['id' => 'id']);
     }
 }

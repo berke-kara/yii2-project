@@ -20,6 +20,13 @@ class UrunSearch extends Urun
             [['id', 'stok_adedi'], 'integer'],
             [['isim', 'bulunduğu_depo_id'], 'safe'],
             [['fiyat'], 'number'],
+
+
+            /*  [['id', 'stok_adedi', 'bulunduğu_depo_id'], 'integer'],
+                        [['isim'], 'safe'],
+                        [['fiyat'], 'number'],*/
+
+
         ];
     }
 
@@ -43,11 +50,12 @@ class UrunSearch extends Urun
     {
         $query = Urun::find();
 
+
         // add conditions that should always apply here
 
-       /* $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);*/
+        /* $dataProvider = new ActiveDataProvider([
+             'query' => $query,
+         ]);*/
 
         $this->load($params);
 
@@ -56,21 +64,16 @@ class UrunSearch extends Urun
             // $query->where('0=1');
             return $query;
         }
-        print_r($query->count());
         // grid filtering conditions
-        print_r("berkeeee");
-        print_r($this->id);
+
         $query->andFilterWhere([
-            'id' => $this->id,
+            'bulunduğu_depo_id' => $this->id,
             'fiyat' => $this->fiyat,
             'stok_adedi' => $this->stok_adedi,
         ]);
-        print_r("adasdadasdasdd");
-        print_r($query->count());
-      
+
         $query->andFilterWhere(['like', 'isim', $this->isim])
             ->andFilterWhere(['like', 'bulunduğu_depo_id', $this->bulunduğu_depo_id]);
-
         return $query;
     }
 }

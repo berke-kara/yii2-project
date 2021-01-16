@@ -38,44 +38,44 @@ class UrunController extends Controller
     public function actionIndex()
     {
 
-      /*  $searchModel = new UrunSearch();
-         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        /*  $searchModel = new UrunSearch();
+           $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-         return $this->render('index', [
-             'searchModel' => $searchModel,
-             'dataProvider' => $dataProvider,
-         ]);
+           return $this->render('index', [
+               'searchModel' => $searchModel,
+               'dataProvider' => $dataProvider,
+           ]);
 
-         
+
+          $searchModel = new UrunSearch();
+          $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+          return $this->render('index', [
+              'searchModel' => $searchModel,
+              'dataProvider' => $dataProvider,
+          ]);*/
+
+
+
+
+
         $searchModel = new UrunSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
 
 
-
-
-
-        $searchModel = new UrunSearch();
-        print_r($searchModel);
-    
         $q = $searchModel->search(Yii::$app->request->queryParams);
-       // print_r($q);
+        // print_r($q);
 
         $count = $q->count();
-      // print_r($count);
+        // print_r($count);
 
-        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>5]); //her iki sayfa da bir linkpager sayesinde diğer sayfaya geçiyoruz
+        $pagination = new Pagination(['totalCount' => $count,'pageSize'=>12]); //her iki sayfa da bir linkpager sayesinde diğer sayfaya geçiyoruz
 
 
         $model = $q->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
 
-         $data = Depo::find()->all();
+        $data = Depo::find()->all();
 
 
 
@@ -86,12 +86,6 @@ class UrunController extends Controller
             'pagination' => $pagination,
         ]);
 
-
-
-
-
-
-        
     }
 
     /**
@@ -104,6 +98,7 @@ class UrunController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+
         ]);
     }
 
@@ -111,7 +106,21 @@ class UrunController extends Controller
      * Creates a new Urun model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+
      */
+
+    public function actionStok($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+        return $this->render('stok', [
+            'model' => $this->findModel($id),
+
+        ]);
+    }
+
     public function actionCreate()
     {
         $model = new Urun();
@@ -135,10 +144,14 @@ class UrunController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($model->load(Yii::$app->request->post()))
+        {
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+
 
         return $this->render('update', [
             'model' => $model,

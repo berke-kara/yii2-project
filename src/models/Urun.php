@@ -11,9 +11,10 @@ use Yii;
  * @property string|null $isim
  * @property float|null $fiyat
  * @property int|null $stok_adedi
- * @property string|null $bulunduğu_depo_id
+ * @property int|null $bulunduğu_depo_id
  *
- * @property Depo $id0
+ * @property Satis[] $satis
+ * @property Depo $bulunduğuDepo
  */
 class Urun extends \yii\db\ActiveRecord
 {
@@ -32,9 +33,9 @@ class Urun extends \yii\db\ActiveRecord
     {
         return [
             [['fiyat'], 'number'],
-            [['stok_adedi'], 'integer'],
-            [['isim', 'bulunduğu_depo_id'], 'string', 'max' => 255],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Depo::className(), 'targetAttribute' => ['id' => 'id']],
+            [['stok_adedi', 'bulunduğu_depo_id'], 'integer'],
+            [['isim'], 'string', 'max' => 255],
+            [['bulunduğu_depo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Depo::className(), 'targetAttribute' => ['bulunduğu_depo_id' => 'id']],
         ];
     }
 
@@ -53,12 +54,22 @@ class Urun extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Id0]].
+     * Gets query for [[Satis]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
+    public function getSatis()
     {
-        return $this->hasOne(Depo::className(), ['id' => 'id']);
+        return $this->hasMany(Satis::className(), ['urun_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[BulunduğuDepo]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBulunduğuDepo()
+    {
+        return $this->hasOne(Depo::className(), ['id' => 'bulunduğu_depo_id']);
     }
 }
