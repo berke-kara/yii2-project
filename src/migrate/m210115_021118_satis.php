@@ -32,9 +32,7 @@ class m210115_021118_satis extends Migration
      */
     public function safeDown()
     {
-        echo "m210115_013032_satis cannot be reverted.\n";
-
-        return false;
+        return $this->dropTable('satis');
     }
 
     /*
