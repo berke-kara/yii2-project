@@ -36,9 +36,7 @@ class m210115_004203_depo extends Migration
      */
     public function safeDown()
     {
-        echo "m210115_004203_depo cannot be reverted.\n";
-
-        return false;
+        return $this->dropTable('depo');
     }
 
     /*
