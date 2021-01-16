@@ -36,7 +36,7 @@ class m210115_004203_depo extends Migration
      */
     public function safeDown()
     {
-        return $this->dropTable('depo');
+       return $this->dropTable('depo');
     }
 
     /*
