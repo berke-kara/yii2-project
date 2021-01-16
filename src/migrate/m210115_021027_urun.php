@@ -57,9 +57,7 @@ class m210115_021027_urun extends Migration
      */
     public function safeDown()
     {
-        echo "m210115_013442_urun cannot be reverted.\n";
-
-        return false;
+        return $this->dropTable('urun');
     }
 
     /*
