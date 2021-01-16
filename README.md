@@ -50,7 +50,9 @@ Modülün kullanılabilmesi için gerekli tabloların oluşturulması ve örnek 
 
 ```
 vagrant ssh
-php yii migrate/up --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+php yii migrate/up depo --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+php yii migrate/up urun --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+php yii migrate/up satis --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 ```
 
 ### Backend
