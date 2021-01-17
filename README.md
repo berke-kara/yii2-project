@@ -46,7 +46,7 @@ composer update
 ```
 
 #Migration ile tabloların oluşturulması ve kayıt eklenmesi
-Modülün kullanılabilmesi için gerekli tabloların oluşturulması ve örnek kayıtların girilmesi için aşağıdaki kodlar çalıştırılmalıdır.Migration kodlarının çalıştırılmasıyla tablolar, kurallar ve ilişkiler oluşturuluyor.
+Modülün kullanılabilmesi için gerekli tabloların oluşturulması ve örnek kayıtların girilmesi için aşağıdaki kodlar çalıştırılmalıdır.Migration kodlarının çalıştırılmasıyla tablolar, kurallar ve ilişkiler oluşturulur.
 
 Not: Modülde sıkıntı çıkmaması için önceden oluşturulmuş veritabanını tabloları silinmelidir.Aksi takdirse sorun yaşanabilir.
 ```
