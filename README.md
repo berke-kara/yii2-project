@@ -55,14 +55,6 @@ php yii migrate/up depo --migrationPath=@vendor/berkekaraa/yii2-project/src/migr
 php yii migrate/up urun --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 php yii migrate/up satis --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 ```
-Oluşturulmuş olan tablolar bu komutlar ile kaldırılabilir.
-
-```
-vagrant ssh
-php yii migrate/down depo --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
-php yii migrate/down urun --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
-php yii migrate/down satis --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
-```
 
 ### Backend
 
