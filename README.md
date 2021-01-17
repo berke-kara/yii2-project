@@ -48,11 +48,20 @@ composer update
 #Migration ile tabloların oluşturulması ve kayıt eklenmesi
 Modülün kullanılabilmesi için gerekli tabloların oluşturulması ve örnek kayıtların girilmesi için aşağıdaki kodlar çalıştırılmalıdır.Migration kodlarının çalıştırılmasıyla tablolar, kurallar ve ilişkiler oluşturuluyor.
 
+Not: Modülde sıkıntı çıkmaması için önceden oluşturulmuş veritabanını tabloları silinmelidir.Aksi takdirse sorun yaşanabilir.
 ```
 vagrant ssh
 php yii migrate/up depo --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 php yii migrate/up urun --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 php yii migrate/up satis --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+```
+Oluşturulmuş olan tablolar bu komutlar ile kaldırılabilir.
+
+```
+vagrant ssh
+php yii migrate/down depo --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+php yii migrate/down urun --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
+php yii migrate/down satis --migrationPath=@vendor/berkekaraa/yii2-project/src/migrate
 ```
 
 ### Backend
