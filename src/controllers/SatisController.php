@@ -80,6 +80,8 @@ class SatisController extends Controller
                     return $this->redirect(['view', 'id' => $model->kullanici_tc,'model'=>$model]);
                 }
             }
+            else
+                Yii::$app->session->setFlash('error', 'Stok adedi mevcut değil.Daha düşük bir adet giriniz.');
         }
 
 
